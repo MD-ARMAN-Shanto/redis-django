@@ -13,7 +13,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
 @api_view(['GET', 'POST'])
-def manage_items(request, *args, **kwargs):
+def manage_items_redis(request, *args, **kwargs):
     if request.method == 'GET':
         items = {}
         count = 0
@@ -107,7 +107,6 @@ def view_cached_books(request):
 
     else:
         products = Product.objects.all()
-        print(products)
         results = [product.to_json() for product in products]
         # store data in cache
         cache.set('product', results, timeout=CACHE_TTL)
