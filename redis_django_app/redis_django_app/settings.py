@@ -126,10 +126,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CACHES = {
     'default': {
+        "TIMEOUT": None,
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "SOCKET_CONNECT_TIMEOUT": 5,
+            "SOCKET_TIMEOUT": 5,
+            "IGNORE_EXCEPTIONS": True,
+            "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
+            "MASTER_CACHE": f"redis://127.0.0.1:6379:6379",
+            "DB": 4,
+        },
+        "KEY_PREFIX": "upay",
     }
 }

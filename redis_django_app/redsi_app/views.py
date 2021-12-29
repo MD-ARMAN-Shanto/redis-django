@@ -7,9 +7,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.core.cache import cache
 from django.conf import settings
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
+# from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
-CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+# CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
 @api_view(['GET', 'POST'])
@@ -109,5 +109,5 @@ def view_cached_books(request):
         products = Product.objects.all()
         results = [product.to_json() for product in products]
         # store data in cache
-        cache.set('product', results, timeout=CACHE_TTL)
+        cache.set('product', results)
         return Response(results, status=status.HTTP_201_CREATED)
