@@ -123,19 +123,19 @@ def get_values_redis(request, *args, **kwargs):
         'items': items
     }
     return Response(response, status=200)
-#
-#
-# @api_view(['GET'])
-# def delete_from_redis(request, *args, **kwargs):
-#
-#     print(kwargs)
-#     key = f"efood.region.{kwargs['key']}"
-#     if key:
-#         data = cache.delete(key)
-#     response = {
-#         'msg': f"successfully deleted from redis, key is {key}",
-#     }
-#     return Response(response, status=204)
+
+
+@api_view(['GET'])
+def delete_from_redis(request, *args, **kwargs):
+
+    print(kwargs)
+    key = f"efood.region.{kwargs['key']}"
+    if key:
+        data = cache.delete(key)
+    response = {
+        'msg': f"successfully deleted from redis, key is {key}",
+    }
+    return Response(response, status=204)
 
 
 
