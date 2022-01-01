@@ -32,64 +32,64 @@ def manage_items_redis(request, *args, **kwargs):
         return Response(response, 201)
 
 
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def manage_item(request, *args, **kwargs):
-#
-#     print(kwargs['key'])
-#     if request.method == 'GET':
-#         key = f"efood.region.{kwargs['key']}"
-#         if key:
-#             value = cache.get(key)
-#             if value:
-#                 response = {
-#                     'key': kwargs['key'],
-#                     'value': value,
-#                     'msg': 'success'
-#                 }
-#                 return Response(response, status=200)
-#             else:
-#                 response = {
-#                     'key': kwargs['key'],
-#                     'value': None,
-#                     'msg': 'Not found'
-#                 }
-#                 return Response(response, status=404)
-#     elif request.method == 'PUT':
-#         if kwargs['key']:
-#             request_data = json.loads(request.body)
-#             new_value = request_data['new_value']
-#             value = cache.get(kwargs['key'])
-#             if value:
-#                 cache.set(kwargs['key'], new_value)
-#                 response = {
-#                     'key': kwargs['key'],
-#                     'value': value,
-#                     'msg': f"Successfully updated {kwargs['key']}"
-#                 }
-#                 return Response(response, status=200)
-#             else:
-#                 response = {
-#                     'key': kwargs['key'],
-#                     'value': None,
-#                     'msg': 'Not found'
-#                 }
-#                 return Response(response, status=404)
-#
-#     elif request.method == 'DELETE':
-#         if kwargs['key']:
-#             result = cache.delete(kwargs['key'])
-#             if result == 1:
-#                 response = {
-#                     'msg': f"{kwargs['key']} successfully deleted"
-#                 }
-#                 return Response(response, status=404)
-#             else:
-#                 response = {
-#                     'key': kwargs['key'],
-#                     'value': None,
-#                     'msg': 'Not found'
-#                 }
-#                 return Response(response, status=404)
+@api_view(['GET', 'PUT', 'DELETE'])
+def manage_item(request, *args, **kwargs):
+
+    print(kwargs['key'])
+    if request.method == 'GET':
+        key = f"efood.region.{kwargs['key']}"
+        if key:
+            value = cache.get(key)
+            if value:
+                response = {
+                    'key': kwargs['key'],
+                    'value': value,
+                    'msg': 'success'
+                }
+                return Response(response, status=200)
+            else:
+                response = {
+                    'key': kwargs['key'],
+                    'value': None,
+                    'msg': 'Not found'
+                }
+                return Response(response, status=404)
+    elif request.method == 'PUT':
+        if kwargs['key']:
+            request_data = json.loads(request.body)
+            new_value = request_data['new_value']
+            value = cache.get(kwargs['key'])
+            if value:
+                cache.set(kwargs['key'], new_value)
+                response = {
+                    'key': kwargs['key'],
+                    'value': value,
+                    'msg': f"Successfully updated {kwargs['key']}"
+                }
+                return Response(response, status=200)
+            else:
+                response = {
+                    'key': kwargs['key'],
+                    'value': None,
+                    'msg': 'Not found'
+                }
+                return Response(response, status=404)
+
+    elif request.method == 'DELETE':
+        if kwargs['key']:
+            result = cache.delete(kwargs['key'])
+            if result == 1:
+                response = {
+                    'msg': f"{kwargs['key']} successfully deleted"
+                }
+                return Response(response, status=404)
+            else:
+                response = {
+                    'key': kwargs['key'],
+                    'value': None,
+                    'msg': 'Not found'
+                }
+                return Response(response, status=404)
 #
 #
 # @api_view(['GET'])
