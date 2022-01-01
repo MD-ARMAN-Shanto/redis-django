@@ -131,7 +131,7 @@ def delete_from_redis(request, *args, **kwargs):
     print(kwargs)
     key = f"efood.region.{kwargs['key']}"
     if key:
-        data = cache.delete(key)
+        cache.delete(key)
     response = {
         'msg': f"successfully deleted from redis, key is {key}",
     }
