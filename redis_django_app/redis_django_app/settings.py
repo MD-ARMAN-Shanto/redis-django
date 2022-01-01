@@ -138,6 +138,5 @@ CACHES = {
             "MASTER_CACHE": f"redis://127.0.0.1:6379:6379",
             "DB": 4,
         },
-        "KEY_PREFIX": "upay",
     }
 }
