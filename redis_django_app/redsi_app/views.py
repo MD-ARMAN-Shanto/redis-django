@@ -90,8 +90,8 @@ def manage_item(request, *args, **kwargs):
                     'msg': 'Not found'
                 }
                 return Response(response, status=404)
-#
-#
+
+
 # @api_view(['GET'])
 # def view_cached_books(request, *args, **kwargs):
 #     # if 'efood.region' in cache:
@@ -100,29 +100,29 @@ def manage_item(request, *args, **kwargs):
 #     print(products)
 #     return Response(products, status=status.HTTP_201_CREATED)
 #
-#     # else:
-#     #     products = Product.objects.all()
-#     #     results = [product.to_json() for product in products]
-#     #     # store data in cache
-#     #     cache.set('product', results)
-#     #     return Response(results, status=status.HTTP_201_CREATED)
+#     else:
+#         products = Product.objects.all()
+#         results = [product.to_json() for product in products]
+#         # store data in cache
+#         cache.set('product', results)
+#         return Response(results, status=status.HTTP_201_CREATED)
 #
 #
-# @api_view(['GET'])
-# def get_values_redis(request, *args, **kwargs):
-#
-#     items = {}
-#     count = 0
-#     print(cache.keys("/*"))
-#     for key in cache.keys("*"):
-#         items[key] = cache.get(key)
-#         count += 1
-#     response = {
-#         'count': count,
-#         'msg': f"Found {count} items.",
-#         'items': items
-#     }
-#     return Response(response, status=200)
+@api_view(['GET'])
+def get_values_redis(request, *args, **kwargs):
+
+    items = {}
+    count = 0
+    print(cache.keys("/*"))
+    for key in cache.keys("*"):
+        items[key] = cache.get(key)
+        count += 1
+    response = {
+        'count': count,
+        'msg': f"Found {count} items.",
+        'items': items
+    }
+    return Response(response, status=200)
 #
 #
 # @api_view(['GET'])
